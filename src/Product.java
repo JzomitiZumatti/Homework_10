@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 public class Product {
     private int id;
-    private String type;
+    private final String type;
     private double price;
     private boolean discount;
-    private LocalDateTime dateAdded;;
+    private LocalDateTime dateAdded;
 
     public Product(String type, double price) {
         this.type = type;

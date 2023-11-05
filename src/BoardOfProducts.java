@@ -36,23 +36,17 @@ public class BoardOfProducts {
     }
 
     public List<Product> getProductList() {
-        List<Product> collectedList = productList.stream()
+        return productList.stream()
                 .filter(s -> s.getType().equals("Book"))
                 .filter(s -> s.getPrice() > 250)
                 .collect(Collectors.toList());
-        return collectedList;
     }
 
     public List<Product> getDiscountProductList() {
-        List<Product> collectedList = productList.stream()
+        return productList.stream()
                 .filter(Product::getDiscount)
-                .map(s -> {
-                    s.setPrice(s.getPrice() * 0.9);
-                    return s;
-                })
+                .peek(s -> s.setPrice(s.getPrice() * 0.9))
                 .collect(Collectors.toList());
-
-        return collectedList;
     }
 
     public void getCheapestProduct() {
@@ -69,7 +63,7 @@ public class BoardOfProducts {
                 .filter(s -> s.getType().equals("Book"))
                 .min(Comparator.comparing(Product::getPrice))
                 .ifPresentOrElse(
-                        cheapestProduct -> System.out.println(cheapestProduct),
+                        System.out::println,
                         () -> System.out.println("Product from [Book] category didn't find.")
                 );
     }
