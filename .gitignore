@@ -7,6 +7,7 @@
 # Log files
 *.log
 
+*.iml
 # BlueJ files
 bluej.save
 
