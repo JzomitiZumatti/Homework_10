@@ -23,12 +23,6 @@ public class Product {
     }
 
     public Product(String type, double price, boolean discount, LocalDateTime dateAdded) {
-        // for testing getLastThreeAddedProducts() method
-        /*try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
         this.type = type;
         this.price = price;
         this.discount = discount;
@@ -74,5 +68,4 @@ public class Product {
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining(", "));
     }
-
 }
