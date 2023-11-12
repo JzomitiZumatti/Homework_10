@@ -1,17 +1,12 @@
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 public class Main {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static void main(String[] args) {
-        BoardOfProducts boardOfProducts = new BoardOfProducts();
+        ProductsBoard boardOfProducts = new ProductsBoard();
 
         System.out.println(ANSI_RED + "First task:" + ANSI_RESET);
         boardOfProducts.add("Book", 110.0);
@@ -25,7 +20,7 @@ public class Main {
         boardOfProducts.add("Pants", 333.0);
         boardOfProducts.add("Glasses", 1110.0);
 
-        boardOfProducts.getProductList().stream()
+        boardOfProducts.getProducts().stream()
                 .forEach(System.out::println);
 
         boardOfProducts.clearBoard();
@@ -41,7 +36,7 @@ public class Main {
         boardOfProducts.add("Book", 333, true);
         boardOfProducts.add("Book", 1110, true);
 
-        List<Product> discountedProducts = boardOfProducts.getDiscountProductList();
+        List<Product> discountedProducts = new ProductsBoard().getDiscountProducts();
         discountedProducts.stream()
                 .forEach(System.out::println);
 
@@ -62,7 +57,6 @@ public class Main {
 
 
         boardOfProducts.clearBoard();
-        //to be clearly, you need to uncomment 27-31 rows in Product.class
         System.out.println(ANSI_RED + "\nFourth task:" + ANSI_RESET);
         boardOfProducts.add("Jacket", 110.0, false, LocalDateTime.now());
         boardOfProducts.add("Book", 250.0, true, LocalDateTime.now());
@@ -113,9 +107,7 @@ public class Main {
         Map<String, List<Product>> groupedProducts = boardOfProducts.groupProductsByType();
         groupedProducts.forEach((type, productList) -> {
             System.out.println("\"" + type + "\",");
-            productList.forEach(s -> {
-                System.out.println("\t{" + s + "}");
-            });
+            productList.forEach(s -> System.out.println("\t{" + s + "}"));
         });
     }
 
