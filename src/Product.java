@@ -68,5 +68,4 @@ public class Product {
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining(", "));
     }
-
 }
